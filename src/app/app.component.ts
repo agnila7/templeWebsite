@@ -9,7 +9,7 @@ import { User, UserService } from './Services/user.service';
 export class AppComponent {
   title = 'TempleWebsite';
   constructor(private userService: UserService){
-    this.registerNewUser({name: 'Chapal', email: 'chapalbuet@yahoo.com', age: 35});
+    this.registerNewUser({name: 'Chapal', email: 'chapalbuet@yahoo.com', age: 35, password: '12345'});
   }
 
   registerNewUser(user: User){
