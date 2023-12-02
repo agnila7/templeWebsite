@@ -10,16 +10,42 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   registerUser(user: User): Observable<any>{
-    let registerUserUrl = httpUrl + 'auth/register/';
+    
     return this.http.post(registerUserUrl, user);
+  }
+
+  loginUser(userLogin: UserLoginInfo): Observable<any>{
+    
+    return this.http.post(loginUserUrl, userLogin);
   }
 }
 
-export interface User {
+
+// export interface User extends UserLoginInfo{
+//   name: string;
+// }
+
+// export interface UserLoginInfo {
+//   email: string;
+//   password: string
+// }
+
+export interface User{
   name: string;
   email: string;
-  age: number;
   password: string;
+  role: UserRole;
+}
+export enum UserRole {
+  ADMIN = 'Admin',
+  SUPER_ADMIN = 'Super Admin',
+  GENERAL_USER = 'General User'
 }
 
+export type UserLoginInfo = Pick<User, 'email' | 'password'>;
+
 export const httpUrl = 'http://localhost:3000/api/';
+export const registerUserUrl = httpUrl + 'auth/register/';
+export const loginUserUrl = httpUrl + 'auth/login/';
+
+

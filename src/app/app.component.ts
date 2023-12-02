@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User, UserService } from './Services/user.service';
+import { User, UserLoginInfo, UserRole, UserService } from './Services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,8 @@ import { User, UserService } from './Services/user.service';
 export class AppComponent {
   title = 'TempleWebsite';
   constructor(private userService: UserService){
-    this.registerNewUser({name: 'Chapal', email: 'chapalbuet@yahoo.com', age: 35, password: '12345'});
+    this.registerNewUser({name: 'Chapal', email: 'chapalbuet@gmail.com', password: '12345', role: UserRole.SUPER_ADMIN});
+    this.loginUser({email: 'chapalbuet@gmail.com', password: '12345'});
   }
 
   registerNewUser(user: User){
@@ -19,6 +20,17 @@ export class AppComponent {
         },
       error: error=>{
         console.log('User could not be registered: ', error);
+      }
+    })
+  }
+
+  loginUser(userLogin: UserLoginInfo){
+    this.userService.loginUser(userLogin).subscribe({
+      next: result=>{
+          console.log('User Logged In successfully');
+        },
+      error: error=>{
+        console.log('User could not be Logged In: ', error);
       }
     })
   }
