@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { User, UserLoginInfo, UserRole, UserService } from './Services/user.service';
+import { EncryptionService } from './Services/encryption.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,10 @@ import { User, UserLoginInfo, UserRole, UserService } from './Services/user.serv
 })
 export class AppComponent {
   title = 'TempleWebsite';
-  constructor(private userService: UserService){
+  constructor(private userService: UserService, private encryptionService: EncryptionService){
     this.registerNewUser({name: 'Chapal', email: 'chapalbuet@gmail.com', password: '12345', role: UserRole.SUPER_ADMIN});
-    this.loginUser({email: 'chapalbuet@gmail.com', password: '12345'});
+    this.loginUser({email: 'chapalbuet@gmail.com', password: this.encryptionService.encrypt('12345')});
+    //console.log(this.encryptionService.encrypt('chapal'));
   }
 
   registerNewUser(user: User){
