@@ -44,6 +44,8 @@ export enum UserRole {
 
 export type UserLoginInfo = Pick<User, 'email' | 'password'>;
 
+export type LoggedInUser = Omit<User, 'password'>;
+
 export const httpUrl = 'https://localhost:3000/api/';
 export const registerUserUrl = httpUrl + 'auth/register/';
 export const loginUserUrl = httpUrl + 'auth/login/';

@@ -1,39 +1,19 @@
 import { Component } from '@angular/core';
-import { User, UserLoginInfo, UserRole, UserService } from './Services/user.service';
-import { EncryptionService } from './Services/encryption.service';
+import { AuthService } from './Services/auth.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `Welcome to the Buddhist Temple of Bangladesh.
+  <a routerLink="/upload">Upload Documents</a>
+  <router-outlet></router-outlet>
+  `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'TempleWebsite';
-  constructor(private userService: UserService, private encryptionService: EncryptionService){
-    this.registerNewUser({name: 'Chapal', email: 'chapalbuet@gmail.com', password: '12345', role: UserRole.SUPER_ADMIN});
-    this.loginUser({email: 'chapalbuet@gmail.com', password: this.encryptionService.encrypt('12345')});
-    //console.log(this.encryptionService.encrypt('chapal'));
-  }
-
-  registerNewUser(user: User){
-    this.userService.registerUser(user).subscribe({
-      next: result=>{
-          console.log('User registered successfully');
-        },
-      error: error=>{
-        console.log('User could not be registered: ', error);
-      }
-    })
-  }
-
-  loginUser(userLogin: UserLoginInfo){
-    this.userService.loginUser(userLogin).subscribe({
-      next: result=>{
-          console.log('User Logged In successfully');
-        },
-      error: error=>{
-        console.log('User could not be Logged In: ', error);
-      }
-    })
+  constructor(private authService: AuthService){
+    //this.authService.registerNewUser({name: 'Chapal', email: 'chapalbuet@gmail.com', password: '12345', role: UserRole.SUPER_ADMIN});
+    this.authService.loginUser({email: 'chapalbuet@gmail.com', password: '12345'});
+    //this.authService.loginUser({email: 'baruaagnila7@gmail.com', password: '54321'});
   }
 }
