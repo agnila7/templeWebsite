@@ -4,13 +4,19 @@ import { AuthService } from './Services/auth.service';
 @Component({
   selector: 'app-root',
   template: `Welcome to the Buddhist Temple of Bangladesh.
-  <a routerLink="/upload">Upload Documents</a>
+  <div>
+    <a routerLink="/upload">Upload Documents</a>
+  </div>
+  <div>
+    <a routerLink="/calendar">Event Calendar</a>
+  </div>
   <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'TempleWebsite';
+  
   constructor(private authService: AuthService){
     //this.authService.registerNewUser({name: 'Chapal', email: 'chapalbuet@gmail.com', password: '12345', role: UserRole.SUPER_ADMIN});
     this.authService.loginUser({email: 'chapalbuet@gmail.com', password: '12345'});

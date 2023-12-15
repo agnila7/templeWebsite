@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { LoggedInUser, User, UserLoginInfo, UserService } from './user.service';
+import { UserService } from './user.service';
 import { EncryptionService } from './encryption.service';
 import { BehaviorSubject } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { LoggedInUser, User, UserLoginInfo } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
