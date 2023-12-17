@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders,  } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { httpUrl } from "./user.service";
 import { Injectable } from "@angular/core";
@@ -10,9 +10,10 @@ export class ImageService {
   
   
     public uploadImage(images: File[]): Observable<any> {
+        
       const formData = new FormData();
       
-      Array.from(images).forEach((image) => { formData.append('files', image); });
+      Array.from(images).forEach((image) => { formData.append('files', image, image.name); });
   
       return this.http.post(ImageUploadUrl, formData);
     }

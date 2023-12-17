@@ -10,6 +10,9 @@ import { AuthService } from './Services/auth.service';
   <div>
     <a routerLink="/calendar">Event Calendar</a>
   </div>
+  <div>
+    <a routerLink="/upload/image">Upload Image</a>
+  </div>
   <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.component.css']

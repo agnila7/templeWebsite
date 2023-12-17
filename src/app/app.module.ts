@@ -9,12 +9,14 @@ import { TokenInterceptorService } from './Services/token-interceptor.service';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, TimelineMonthService, MonthAgendaService, TimelineViewsService } from '@syncfusion/ej2-angular-schedule';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UploadComponent,
-    CalendarComponent
+    CalendarComponent,
+    ImageUploadComponent
   ],
   imports: [
     BrowserModule,
