@@ -4,19 +4,19 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { UploadComponent } from './upload/upload.component';
 import { TokenInterceptorService } from './Services/token-interceptor.service';
 import { CalendarComponent } from './calendar/calendar.component';
 import { ScheduleModule } from '@syncfusion/ej2-angular-schedule';
 import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, TimelineMonthService, MonthAgendaService, TimelineViewsService } from '@syncfusion/ej2-angular-schedule';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { DocumentUploadComponent } from './document-upload/document-upload.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UploadComponent,
     CalendarComponent,
-    ImageUploadComponent
+    ImageUploadComponent,
+    DocumentUploadComponent
   ],
   imports: [
     BrowserModule,

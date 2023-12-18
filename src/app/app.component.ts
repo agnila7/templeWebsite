@@ -5,13 +5,13 @@ import { AuthService } from './Services/auth.service';
   selector: 'app-root',
   template: `Welcome to the Buddhist Temple of Bangladesh.
   <div>
-    <a routerLink="/upload">Upload Documents</a>
-  </div>
-  <div>
     <a routerLink="/calendar">Event Calendar</a>
   </div>
   <div>
-    <a routerLink="/upload/image">Upload Image</a>
+    <a routerLink="/upload/images">Upload Images</a>
+  </div>
+  <div>
+    <a routerLink="/upload/files">Upload Documents</a>
   </div>
   <router-outlet></router-outlet>
   `,
