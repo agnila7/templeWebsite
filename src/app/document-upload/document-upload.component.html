@@ -1,0 +1,12 @@
+
+<div style="text-align: center">
+    <form>
+        <div>
+            <input type="file" name="document" multiple (change)="selectDocuments($event)"/>
+            <br>
+            <div>
+                <button type="submit" (click)="onSubmit($event)">Upload</button>
+            </div>
+        </div>
+    </form>
+</div>
