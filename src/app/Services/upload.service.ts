@@ -16,7 +16,15 @@ export class UploadService {
   
       return this.http.post(uploadUrl, formData);
     }
+
+    public getFileList(url: string): Observable<any> {
+  
+      return this.http.get(url);
+    }
+
   }
 
   export const FilesUploadUrl = httpUrl + 'operation/upload/files';
   export const ImagesUploadUrl = httpUrl + 'operation/upload/images';
+  export const ImagesListUrl = httpUrl + 'list/images';
+  export const FilesListUrl = httpUrl + 'list/files';

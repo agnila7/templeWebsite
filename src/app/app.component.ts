@@ -13,6 +13,8 @@ import { AuthService } from './Services/auth.service';
   <div>
     <a routerLink="/upload/files">Upload Documents</a>
   </div>
+  <app-carousel></app-carousel>
+  <app-file-downloader></app-file-downloader>
   <router-outlet></router-outlet>
   `,
   styleUrls: ['./app.component.css']

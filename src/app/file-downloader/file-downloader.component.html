@@ -1,0 +1,6 @@
+<mat-form-field>
+    <mat-label>Select Option to download</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let file of files" value="file.url" (onSelectionChange)="select(file)">{{file.Name}}</mat-option>
+    </mat-select>
+</mat-form-field>

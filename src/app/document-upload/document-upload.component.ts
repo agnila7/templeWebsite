@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FilesUploadUrl, UploadService } from '../Services/image.service';
+import { FilesUploadUrl, UploadService } from '../Services/upload.service';
 
 
 @Component({

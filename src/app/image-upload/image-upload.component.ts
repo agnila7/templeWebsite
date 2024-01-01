@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ImagesUploadUrl, UploadService } from '../Services/image.service';
+import { ImagesUploadUrl, UploadService } from '../Services/upload.service';
 import { DocumentUploadComponent } from '../document-upload/document-upload.component';
 
 
