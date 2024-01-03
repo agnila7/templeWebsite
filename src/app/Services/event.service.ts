@@ -8,8 +8,13 @@ import { RequestType } from '../calendar/calendar.component';
   providedIn: 'root'
 })
 export class EventService {
+  operationUrl = httpUrl + 'operation/event/';
+  AddOperationUrl = this.operationUrl + 'add';
+  EditOperationUrl = this.operationUrl + 'edit';
+  DeleteOperationUrl = this.operationUrl + 'delete';
+  GetOperationUrl = this.operationUrl + 'all';
 
-  constructor(private http: HttpClient) { }
+  constructor(protected http: HttpClient) { }
 
   addNewEvent(event: TempleEvent){
     if(!event){
@@ -17,7 +22,7 @@ export class EventService {
       return;
     }
 
-    this.http.post(AddEventUrl, event).subscribe({
+    this.http.post(this.AddOperationUrl, event).subscribe({
       next: result=>{
         console.log('Event added successfully');
       },
@@ -33,7 +38,7 @@ export class EventService {
       return;
     }
 
-    this.http.post(EditEventUrl, event).subscribe({
+    this.http.post(this.EditOperationUrl, event).subscribe({
       next: result=>{
         console.log('Event updated successfully');
       },
@@ -49,7 +54,7 @@ export class EventService {
       return;
     }
 
-    this.http.post(DeleteEventUrl, event).subscribe({
+    this.http.post(this.DeleteOperationUrl, event).subscribe({
       next: result=>{
         console.log('Event deleted successfully');
       },
@@ -60,11 +65,6 @@ export class EventService {
   }
 
   getAllEvents(){
-    return this.http.get(GetAllEventsUrl);
+    return this.http.get(this.GetOperationUrl);
   }
 }
-
-export const AddEventUrl = httpUrl + 'operation/event/add';
-export const EditEventUrl = httpUrl + 'operation/event/edit';
-export const DeleteEventUrl = httpUrl + 'operation/event/delete';
-export const GetAllEventsUrl = httpUrl + 'operation/event/all';

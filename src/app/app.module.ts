@@ -15,10 +15,19 @@ import { CarouselModule } from "@syncfusion/ej2-angular-navigations";
 import { FileDownloaderComponent } from './file-downloader/file-downloader.component';
 import { MatSelectModule } from '@angular/material/select';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import  {MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
+import  {MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatIconModule } from '@angular/material/icon';
+import { HomeComponent } from './templeSitePages/home/home.component';
+import { AboutBSOComponent } from './templeSitePages/about-bso/about-bso.component';
+import { AboutTempleComponent } from './templeSitePages/about-temple/about-temple.component';
+import { WelcomeComponent } from './templeSitePages/welcome/welcome.component'
+import { EventCalendarComponent } from './calendar/eventCalendar.component';
+import { AlmsCalendarComponent } from './calendar/almsCalendar.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +36,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ImageUploadComponent,
     DocumentUploadComponent,
     CarouselComponent,
-    FileDownloaderComponent
+    FileDownloaderComponent,
+    HomeComponent,
+    AboutBSOComponent,
+    AboutTempleComponent,
+    WelcomeComponent,
+    EventCalendarComponent,
+    AlmsCalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +56,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
      DayService, WeekService, WorkWeekService, MonthService, AgendaService, TimelineMonthService, MonthAgendaService, TimelineViewsService],
