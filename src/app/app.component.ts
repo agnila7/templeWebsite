@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { AuthService } from './Services/auth.service';
 import { NavigationStart, Router } from '@angular/router';
+import { AuthService } from './Services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +24,8 @@ import { NavigationStart, Router } from '@angular/router';
     <button mat-button>Blog</button>
     <button mat-button routerLink="/contact">Contact</button>
     <button mat-button>Donate</button>
+    <button mat-button routerLink="/login">Register/Login</button>
+    <button mat-button (click)="logOut()">LogOut</button>
   </div>
 
   <app-home *ngIf=showHome></app-home><br><br><br><br>
@@ -66,9 +68,9 @@ export class AppComponent {
   title = 'TempleWebsite';
   showHome = false;
   
-  constructor(private authService: AuthService, private router: Router){
+  constructor(private router: Router, private authService: AuthService){
     //this.authService.registerNewUser({name: 'Chapal', email: 'chapalbuet@gmail.com', password: '12345', role: UserRole.SUPER_ADMIN});
-    this.authService.loginUser({email: 'chapalbuet@gmail.com', password: '12345'});
+    //this.authService.loginUser({email: 'chapalbuet@gmail.com', password: '12345'});
     //this.authService.loginUser({email: 'baruaagnila7@gmail.com', password: '54321'});
     this.router.events.subscribe(event => {
       if(event instanceof NavigationStart){
@@ -83,5 +85,9 @@ export class AppComponent {
     link.href = "assets/MemberShipForm.pdf";
     link.click();
     link.remove();
+  }
+
+  logOut(){
+    this.authService.logOut();
   }
 }

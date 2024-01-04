@@ -4,6 +4,7 @@ import { EncryptionService } from './encryption.service';
 import { BehaviorSubject } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { LoggedInUser, User, UserLoginInfo } from '../models/user.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
   private _isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   user: LoggedInUser | undefined | null;
 
-  constructor(private userService: UserService, private encryptionService: EncryptionService) { 
+  constructor(private userService: UserService, private encryptionService: EncryptionService, private router: Router) { 
     this._isLoggedIn$.next( !!this.token);
   }
 
@@ -33,6 +34,7 @@ export class AuthService {
             this.user = this.getUser(this.token);
             this._isLoggedIn$.next(true);
             console.log('User registered successfully');
+            this.router.navigateByUrl('/');
           }
         },
       error: error=>{
@@ -50,6 +52,7 @@ export class AuthService {
           this._isLoggedIn$.next(true);
           this.user = this.getUser(this.token);
           console.log('User Logged In successfully');
+          this.router.navigateByUrl('/');
         }
       },
       error: error=>{
@@ -62,6 +65,7 @@ export class AuthService {
     localStorage.removeItem(this.TOKEN_NAME);
     this._isLoggedIn$.next(false);
     this.user = null;
+    this.router.navigateByUrl('/login');
   }
 
   private getUser(token: string | null): LoggedInUser | null{

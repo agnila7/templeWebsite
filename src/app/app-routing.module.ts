@@ -14,6 +14,8 @@ import { AlmsCalendarComponent } from './calendar/almsCalendar.component';
 import { CommitteeComponent } from './templeSitePages/committee/committee.component';
 import { TrusteeComponent } from './templeSitePages/trustee/trustee.component';
 import { ContactComponent } from './templeSitePages/contact/contact.component';
+import { RegisterComponent } from './templeSitePages/register/register.component';
+import { LoginComponent } from './templeSitePages/login/login.component';
 
 const routes: Routes = [
   {path: 'calendar', component: CalendarComponent},
@@ -28,7 +30,9 @@ const routes: Routes = [
   {path: 'welcome', component: WelcomeComponent},
   {path: 'committee', component: CommitteeComponent},
   {path: 'trustee', component: TrusteeComponent},
-  {path: 'contact', component: ContactComponent}
+  {path: 'contact', component: ContactComponent},
+  {path: 'register', component: RegisterComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

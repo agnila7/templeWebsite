@@ -32,6 +32,9 @@ import { CommitteeComponent } from './templeSitePages/committee/committee.compon
 import { TrusteeComponent } from './templeSitePages/trustee/trustee.component';
 import { ContactComponent } from './templeSitePages/contact/contact.component';
 import { EmailFormComponent } from './templeSitePages/email-form/email-form.component';
+import { RegisterComponent } from './templeSitePages/register/register.component';
+import { MatCardModule } from '@angular/material/card';
+import { LoginComponent } from './templeSitePages/login/login.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import { EmailFormComponent } from './templeSitePages/email-form/email-form.comp
     CommitteeComponent,
     TrusteeComponent,
     ContactComponent,
-    EmailFormComponent
+    EmailFormComponent,
+    RegisterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +72,8 @@ import { EmailFormComponent } from './templeSitePages/email-form/email-form.comp
     MatInputModule,
     MatMenuModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatCardModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
      DayService, WeekService, WorkWeekService, MonthService, AgendaService, TimelineMonthService, MonthAgendaService, TimelineViewsService],
