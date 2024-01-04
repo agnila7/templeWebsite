@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 export class AuthService {
   private readonly TOKEN_NAME = 'token';
   public isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  user: LoggedInUser | undefined | null;
 
   constructor(private userService: UserService, private encryptionService: EncryptionService, private router: Router) { 
     this.isLoggedIn$.next( !!this.token);
@@ -31,7 +30,6 @@ export class AuthService {
       next: result=>{
           if(result.token){
             localStorage.setItem(this.TOKEN_NAME, result.token);
-            this.user = this.getUser(this.token);
             this.isLoggedIn$.next(true);
             console.log('User registered successfully');
             this.router.navigateByUrl('/');
@@ -50,7 +48,6 @@ export class AuthService {
         if(result.token){
           localStorage.setItem(this.TOKEN_NAME, result.token);
           this.isLoggedIn$.next(true);
-          this.user = this.getUser(this.token);
           console.log('User Logged In successfully');
           this.router.navigateByUrl('/');
         }
@@ -64,11 +61,10 @@ export class AuthService {
   logOut(){
     localStorage.removeItem(this.TOKEN_NAME);
     this.isLoggedIn$.next(false);
-    this.user = null;
     this.router.navigateByUrl('/login');
   }
 
-  private getUser(token: string | null): LoggedInUser | null{
-    return token ? jwtDecode(token) : null;
+  public get user(): LoggedInUser | null{
+    return this.token ? jwtDecode(this.token) : null;
   }
 }

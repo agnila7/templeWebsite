@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { AuthService } from './Services/auth.service';
+import { UserRole } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -31,8 +32,8 @@ import { AuthService } from './Services/auth.service';
   <app-home *ngIf=showHome></app-home><br><br><br><br>
 
   <mat-menu #media="matMenu">
-    <button mat-menu-item routerLink="/upload/images">Upload Images</button>
-    <button mat-menu-item routerLink="/upload/files">Upload Documents</button>
+    <button mat-menu-item *ngIf="!hideNonAdminMenu" routerLink="/upload/images">Upload Images</button>
+    <button mat-menu-item *ngIf="!hideNonAdminMenu" routerLink="/upload/files">Upload Documents</button>
     <button mat-menu-item routerLink="/download/files">Download Documents</button>
     <button mat-menu-item routerLink="/media/gallery">Photo Gallery</button>
   </mat-menu>
@@ -64,16 +65,21 @@ import { AuthService } from './Services/auth.service';
   `,
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'TempleWebsite';
   showHome = false;
   showLogOut = false;
   loggedIn = false;
+  hideNonAdminMenu = true;
   
   constructor(private router: Router, private authService: AuthService){
     //this.authService.registerNewUser({name: 'Chapal', email: 'chapalbuet@gmail.com', password: '12345', role: UserRole.SUPER_ADMIN});
     //this.authService.loginUser({email: 'chapalbuet@gmail.com', password: '12345'});
     //this.authService.loginUser({email: 'baruaagnila7@gmail.com', password: '54321'});
+   
+    
+  }
+  ngOnInit(): void {
     this.router.events.subscribe(event => {
       if(event instanceof NavigationStart){
         this.showHome = event.url === '/';
@@ -83,12 +89,13 @@ export class AppComponent {
     // if token exist - assumed user is logged in
     if(this.authService.token){
       this.loggedIn = true;
+      this.showHideNonAdminMenu();
     }
 
     this.authService.isLoggedIn$.subscribe(logIn=>{
       this.loggedIn = logIn;
+      this.showHideNonAdminMenu();
     })
-    
   }
 
   downloadMembershipForm(){
@@ -101,5 +108,13 @@ export class AppComponent {
 
   logOut(){
     this.authService.logOut();
+  }
+
+  showHideNonAdminMenu(){
+    if(this.authService.user?.role === UserRole.ADMIN || this.authService.user?.role === UserRole.SUPER_ADMIN){
+      this.hideNonAdminMenu = false;
+    }else{
+      this.hideNonAdminMenu = true;
+    }
   }
 }
