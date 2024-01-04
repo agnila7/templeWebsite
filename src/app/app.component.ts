@@ -22,11 +22,11 @@ import { NavigationStart, Router } from '@angular/router';
     <button mat-button routerLink="/calendar/events">Events</button>
     <button mat-button>News</button>
     <button mat-button>Blog</button>
-    <button mat-button>Contact</button>
+    <button mat-button routerLink="/contact">Contact</button>
     <button mat-button>Donate</button>
   </div>
 
-  <app-home *ngIf=showHome></app-home>
+  <app-home *ngIf=showHome></app-home><br><br><br><br>
 
   <mat-menu #media="matMenu">
     <button mat-menu-item routerLink="/upload/images">Upload Images</button>
@@ -43,8 +43,8 @@ import { NavigationStart, Router } from '@angular/router';
 
   <mat-menu #bso="matMenu">
     <button mat-menu-item routerLink="/bso">About BSO</button>
-    <button mat-menu-item>BSO Commitee</button>
-    <button mat-menu-item>Trustee</button>
+    <button mat-menu-item routerLink="/committee">BSO Commitee</button>
+    <button mat-menu-item routerLink="/trustee">Trustee</button>
     <button mat-menu-item>BSO Annual Report</button>
   </mat-menu>
 

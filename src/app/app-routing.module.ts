@@ -11,6 +11,9 @@ import { AboutBSOComponent } from './templeSitePages/about-bso/about-bso.compone
 import { AboutTempleComponent } from './templeSitePages/about-temple/about-temple.component';
 import { WelcomeComponent } from './templeSitePages/welcome/welcome.component';
 import { AlmsCalendarComponent } from './calendar/almsCalendar.component';
+import { CommitteeComponent } from './templeSitePages/committee/committee.component';
+import { TrusteeComponent } from './templeSitePages/trustee/trustee.component';
+import { ContactComponent } from './templeSitePages/contact/contact.component';
 
 const routes: Routes = [
   {path: 'calendar', component: CalendarComponent},
@@ -22,7 +25,10 @@ const routes: Routes = [
   {path: 'calendar/alms', component: AlmsCalendarComponent},
   {path: 'bso', component: AboutBSOComponent},
   {path: 'temple', component: AboutTempleComponent},
-  {path: 'welcome', component: WelcomeComponent}
+  {path: 'welcome', component: WelcomeComponent},
+  {path: 'committee', component: CommitteeComponent},
+  {path: 'trustee', component: TrusteeComponent},
+  {path: 'contact', component: ContactComponent}
 ];
 
 @NgModule({

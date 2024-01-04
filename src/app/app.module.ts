@@ -28,6 +28,10 @@ import { AboutTempleComponent } from './templeSitePages/about-temple/about-templ
 import { WelcomeComponent } from './templeSitePages/welcome/welcome.component'
 import { EventCalendarComponent } from './calendar/eventCalendar.component';
 import { AlmsCalendarComponent } from './calendar/almsCalendar.component';
+import { CommitteeComponent } from './templeSitePages/committee/committee.component';
+import { TrusteeComponent } from './templeSitePages/trustee/trustee.component';
+import { ContactComponent } from './templeSitePages/contact/contact.component';
+import { EmailFormComponent } from './templeSitePages/email-form/email-form.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,11 @@ import { AlmsCalendarComponent } from './calendar/almsCalendar.component';
     AboutTempleComponent,
     WelcomeComponent,
     EventCalendarComponent,
-    AlmsCalendarComponent
+    AlmsCalendarComponent,
+    CommitteeComponent,
+    TrusteeComponent,
+    ContactComponent,
+    EmailFormComponent
   ],
   imports: [
     BrowserModule,

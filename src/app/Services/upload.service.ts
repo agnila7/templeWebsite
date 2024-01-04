@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders,  } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { httpUrl } from "./user.service";
+import { ServerUrl } from "./user.service";
 import { Injectable } from "@angular/core";
 
 @Injectable({providedIn: 'root'})
@@ -24,7 +24,7 @@ export class UploadService {
 
   }
 
-  export const FilesUploadUrl = httpUrl + 'operation/upload/files';
-  export const ImagesUploadUrl = httpUrl + 'operation/upload/images';
-  export const ImagesListUrl = httpUrl + 'list/images';
-  export const FilesListUrl = httpUrl + 'list/files';
+  export const FilesUploadUrl = ServerUrl + 'operation/upload/files';
+  export const ImagesUploadUrl = ServerUrl + 'operation/upload/images';
+  export const ImagesListUrl = ServerUrl + 'list/images';
+  export const FilesListUrl = ServerUrl + 'list/files';

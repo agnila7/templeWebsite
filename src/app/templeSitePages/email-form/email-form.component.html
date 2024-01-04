@@ -1,0 +1,46 @@
+<div>
+    <div class="contact-form-wrapper d-flex justify-content-center">
+      <form (ngSubmit)="onSubmit()" [formGroup]="emailForm" class="contact-form">
+        <h2 class="title">Contact us</h2>
+        <p class="description">
+        </p>
+        <div>
+            <label>Name: </label>
+            <input type="text" class="form-control rounded border-white mb-3 form-input" formControlName="name">
+            <span *ngIf="emailForm.controls['name'].invalid && (emailForm.controls['name'].dirty || emailForm.controls['name'].touched)" class="alert alert-danger">
+                <span *ngIf="emailForm.controls['name'].errors?.['required']" style="color: red;">
+                    Name is required.
+                </span>
+            </span>
+        </div>
+        
+        <div><label>Email: </label>
+          <input type="email" class="form-control rounded border-white mb-3 form-input" formControlName="email" name="email">
+          <span *ngIf="emailForm.controls['email'].invalid && (emailForm.controls['email'].dirty || emailForm.controls['email'].touched)" class="alert alert-danger">
+            <span *ngIf="emailForm.controls['email'].errors?.['required']" style="color: red;">
+                Email is required.
+            </span>
+        </span>
+        </div>
+        <div><label>Subject: </label>
+            <input type="text" class="form-control rounded border-white mb-3 form-input" formControlName="subject" name="subject">
+            <span *ngIf="emailForm.controls['subject'].invalid && (emailForm.controls['subject'].dirty || emailForm.controls['subject'].touched)" class="alert alert-danger">
+                <span *ngIf="emailForm.controls['subject'].errors?.['required']" style="color: red;">
+                    Subject is required.
+                </span>
+            </span>
+        </div>
+        <div>
+          <textarea class="form-control rounded border-white mb-3 form-text-area" formControlName="message" name="message" rows="5" cols="30"></textarea>
+          <span *ngIf="emailForm.controls['message'].invalid && (emailForm.controls['message'].dirty || emailForm.controls['message'].touched)" class="alert alert-danger">
+            <span *ngIf="emailForm.controls['message'].errors?.['required']" style="color: red;">
+                Message is required.
+            </span>
+        </span>
+        </div>
+        <div class="submit-button-wrapper">
+          <button type="submit" [disabled]="!emailForm.valid">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>

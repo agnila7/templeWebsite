@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { httpUrl } from './user.service';
+import { ServerUrl } from './user.service';
 import { TempleEvent } from '../models/templeEvent.model';
 import { RequestType } from '../calendar/calendar.component';
 
@@ -8,7 +8,7 @@ import { RequestType } from '../calendar/calendar.component';
   providedIn: 'root'
 })
 export class EventService {
-  operationUrl = httpUrl + 'operation/event/';
+  public operationUrl = ServerUrl + 'operation/event/';
   AddOperationUrl = this.operationUrl + 'add';
   EditOperationUrl = this.operationUrl + 'edit';
   DeleteOperationUrl = this.operationUrl + 'delete';

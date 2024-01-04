@@ -33,8 +33,8 @@ export class UserService {
 
 
 
-export const httpUrl = 'https://localhost:3000/api/';
-export const registerUserUrl = httpUrl + 'auth/register/';
-export const loginUserUrl = httpUrl + 'auth/login/';
+export const ServerUrl = 'https://localhost:3000/api/';
+export const registerUserUrl = ServerUrl + 'auth/register/';
+export const loginUserUrl = ServerUrl + 'auth/login/';
 
 
