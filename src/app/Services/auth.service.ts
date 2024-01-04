@@ -11,11 +11,11 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private readonly TOKEN_NAME = 'token';
-  private _isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   user: LoggedInUser | undefined | null;
 
   constructor(private userService: UserService, private encryptionService: EncryptionService, private router: Router) { 
-    this._isLoggedIn$.next( !!this.token);
+    this.isLoggedIn$.next( !!this.token);
   }
 
   get token(){
@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   isLoggedIn(): boolean{
-    return this._isLoggedIn$.value;
+    return this.isLoggedIn$.value;
   }
 
   registerNewUser(user: User){
@@ -32,7 +32,7 @@ export class AuthService {
           if(result.token){
             localStorage.setItem(this.TOKEN_NAME, result.token);
             this.user = this.getUser(this.token);
-            this._isLoggedIn$.next(true);
+            this.isLoggedIn$.next(true);
             console.log('User registered successfully');
             this.router.navigateByUrl('/');
           }
@@ -49,7 +49,7 @@ export class AuthService {
       next: result=>{
         if(result.token){
           localStorage.setItem(this.TOKEN_NAME, result.token);
-          this._isLoggedIn$.next(true);
+          this.isLoggedIn$.next(true);
           this.user = this.getUser(this.token);
           console.log('User Logged In successfully');
           this.router.navigateByUrl('/');
@@ -63,7 +63,7 @@ export class AuthService {
 
   logOut(){
     localStorage.removeItem(this.TOKEN_NAME);
-    this._isLoggedIn$.next(false);
+    this.isLoggedIn$.next(false);
     this.user = null;
     this.router.navigateByUrl('/login');
   }

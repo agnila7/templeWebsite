@@ -16,6 +16,7 @@ import { TrusteeComponent } from './templeSitePages/trustee/trustee.component';
 import { ContactComponent } from './templeSitePages/contact/contact.component';
 import { RegisterComponent } from './templeSitePages/register/register.component';
 import { LoginComponent } from './templeSitePages/login/login.component';
+import { LoggedInAuthGuard } from './loggedIn.auth.guard';
 
 const routes: Routes = [
   {path: 'calendar', component: CalendarComponent},
@@ -31,8 +32,8 @@ const routes: Routes = [
   {path: 'committee', component: CommitteeComponent},
   {path: 'trustee', component: TrusteeComponent},
   {path: 'contact', component: ContactComponent},
-  {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'register', component: RegisterComponent, canActivate: [LoggedInAuthGuard]},
+  {path: 'login', component: LoginComponent, canActivate: [LoggedInAuthGuard]}
 ];
 
 @NgModule({

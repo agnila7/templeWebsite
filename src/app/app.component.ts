@@ -24,8 +24,8 @@ import { AuthService } from './Services/auth.service';
     <button mat-button>Blog</button>
     <button mat-button routerLink="/contact">Contact</button>
     <button mat-button>Donate</button>
-    <button mat-button routerLink="/login">Register/Login</button>
-    <button mat-button (click)="logOut()">LogOut</button>
+    <button *ngIf="!loggedIn" mat-button routerLink="/login">Register/Login</button>
+    <button *ngIf="loggedIn" mat-button (click)="logOut()" class="right-aligned-button">LogOut</button>
   </div>
 
   <app-home *ngIf=showHome></app-home><br><br><br><br>
@@ -67,6 +67,8 @@ import { AuthService } from './Services/auth.service';
 export class AppComponent {
   title = 'TempleWebsite';
   showHome = false;
+  showLogOut = false;
+  loggedIn = false;
   
   constructor(private router: Router, private authService: AuthService){
     //this.authService.registerNewUser({name: 'Chapal', email: 'chapalbuet@gmail.com', password: '12345', role: UserRole.SUPER_ADMIN});
@@ -76,7 +78,17 @@ export class AppComponent {
       if(event instanceof NavigationStart){
         this.showHome = event.url === '/';
       }
+    });
+
+    // if token exist - assumed user is logged in
+    if(this.authService.token){
+      this.loggedIn = true;
+    }
+
+    this.authService.isLoggedIn$.subscribe(logIn=>{
+      this.loggedIn = logIn;
     })
+    
   }
 
   downloadMembershipForm(){
