@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ImagesListUrl, UploadService } from '../Services/upload.service';
+import { NotificationService, NotificationType } from '../Services/notification.service';
 
 @Component({
   selector: 'app-carousel',
@@ -20,13 +21,13 @@ import { ImagesListUrl, UploadService } from '../Services/upload.service';
 export class CarouselComponent implements OnInit {
   public images: Record<string, string | number>[] = [
   ];
-  constructor(private uploadService: UploadService) { 
+  constructor(private uploadService: UploadService, private notificationService: NotificationService) { 
     this.uploadService.getFileList(ImagesListUrl).subscribe({
       next: (result)=>{
         this.images = result;
       },
       error: (error: any)=>{
-        console.log('No Images Found', error);
+        this.notificationService.sendMessage({message: 'No Images Found: ' + error.error.msg, type: NotificationType.error});
       }
     });
   }

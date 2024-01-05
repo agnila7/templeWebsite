@@ -3,6 +3,7 @@ import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, 
 import * as _ from 'lodash';
 import { TempleEvent } from '../models/templeEvent.model'
 import { EventService } from '../Services/event.service';
+import { NotificationService, NotificationType } from '../Services/notification.service';
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
@@ -22,7 +23,7 @@ export class CalendarComponent {
     dataSource: this.data
   };
     
-  constructor(private eventService: EventService) { 
+  constructor(private eventService: EventService, private notificationService: NotificationService) { 
     this.eventService.getAllEvents().subscribe({
       next: (result: any)=>{
          if(this.scheduleObj){
@@ -30,16 +31,12 @@ export class CalendarComponent {
          }
       },
       error: error=>{
-        console.log('Could not get events', error);
+        this.notificationService.sendMessage({message: 'Could not get events: ' + error.error.msg, type: NotificationType.error});
       }
     });
   }
 
   actionComplete($event: ActionEventArgs){
-    //console.log($event);
-    // if($event.data?.length){
-    //   this.eventService.updateEvent( (<TempleEvent[]>$event.data)[0], <RequestType>$event.requestType);
-    // }
     if($event.addedRecords && $event.addedRecords.length){
       this.eventService.addNewEvent((<TempleEvent[]>$event.addedRecords)[0]);
     }else if($event.changedRecords && $event.changedRecords.length){

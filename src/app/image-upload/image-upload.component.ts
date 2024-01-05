@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ImagesUploadUrl, UploadService } from '../Services/upload.service';
 import { DocumentUploadComponent } from '../document-upload/document-upload.component';
+import { NotificationType } from '../Services/notification.service';
 
 
 @Component({
@@ -14,10 +15,11 @@ export class ImageUploadComponent extends DocumentUploadComponent implements OnD
     e.preventDefault();
     this.uploadService.upload(this.documents, ImagesUploadUrl).subscribe({
       next: (result: any)=>{
-        console.log('Image uploaded successfully-', result);
+        this.notificationService.sendMessage({message: 'Images Uploaded successfully', type: NotificationType.success});
+        
       },
       error: (error: any)=>{
-        console.log('Images could not be uploaded', error);
+        this.notificationService.sendMessage({message: 'Images could not be uploaded: ' + error.error.msg, type: NotificationType.error});
       }
     })
   }

@@ -2,6 +2,7 @@ import { DayService, WeekService, WorkWeekService, MonthService, AgendaService, 
 import { Component } from '@angular/core';
 import { CalendarComponent } from './calendar.component';
 import { AlmsService } from '../Services/alms.service';
+import { NotificationService } from '../Services/notification.service';
 @Component({
     selector: 'app-calendar',
     templateUrl: './calendar.component.html',
@@ -9,7 +10,7 @@ import { AlmsService } from '../Services/alms.service';
     providers: [DayService, WeekService, WorkWeekService, MonthService, AgendaService, MonthAgendaService, TimelineViewsService, TimelineMonthService]
 })
 export class AlmsCalendarComponent extends CalendarComponent{
-    constructor(almsService: AlmsService){
-        super(almsService);
+    constructor(almsService: AlmsService, notificationService: NotificationService){
+        super(almsService, notificationService);
     }
 }

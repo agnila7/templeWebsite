@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ServerUrl } from './user.service';
 import { TempleEvent } from '../models/templeEvent.model';
 import { RequestType } from '../calendar/calendar.component';
+import { NotificationService, NotificationType } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class EventService {
   DeleteOperationUrl = this.operationUrl + 'delete';
   GetOperationUrl = this.operationUrl + 'all';
 
-  constructor(protected http: HttpClient) { }
+  constructor(protected http: HttpClient, private notificationService: NotificationService) { }
 
   addNewEvent(event: TempleEvent){
     if(!event){
@@ -24,42 +25,42 @@ export class EventService {
 
     this.http.post(this.AddOperationUrl, event).subscribe({
       next: result=>{
-        console.log('Event added successfully');
+        this.notificationService.sendMessage({message: 'Event added successfully', type: NotificationType.success});
       },
       error: error=>{
-        console.log('Event could not be added', error);
+        this.notificationService.sendMessage({message: 'Event could not be added: ' + error.error.msg, type: NotificationType.error});
       }
     });
   }
 
   editEvent(event: TempleEvent){
     if(!event){
-      console.log('Event could not be updated');
+      this.notificationService.sendMessage({message: 'Event could not be added', type: NotificationType.error});
       return;
     }
 
     this.http.post(this.EditOperationUrl, event).subscribe({
       next: result=>{
-        console.log('Event updated successfully');
+        this.notificationService.sendMessage({message: 'Event updated successfully', type: NotificationType.success});
       },
       error: error=>{
-        console.log('Event could not be updated', error);
+        this.notificationService.sendMessage({message: 'Event could not be updated: ' + error.error.msg, type: NotificationType.error});
       }
     });
   }
 
   deleteEvent(event: TempleEvent){
     if(!event){
-      console.log('Event could not be deleted');
+      this.notificationService.sendMessage({message: 'Event could not be deleted', type: NotificationType.error});
       return;
     }
 
     this.http.post(this.DeleteOperationUrl, event).subscribe({
       next: result=>{
-        console.log('Event deleted successfully');
+        this.notificationService.sendMessage({message: 'Event deleted successfully', type: NotificationType.success});
       },
       error: error=>{
-        console.log('Event could not be deleted', error);
+        this.notificationService.sendMessage({message: 'Event could not be deleted: ' + error.error.msg, type: NotificationType.error});
       }
     });
   }

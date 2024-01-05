@@ -12,7 +12,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 5. Authentication and authorized access control - There is standard login, logout, register feature to control access to certain features. Https protocol is used with server certificate to encrypt data. User passwords are hashed and saved - that way no one can know the exact user passwords. There is also RSA encryption technology to pass certain information more secured way that can only be decrypted with private key.
 
-6. MongoDb is used to store dataset. Uploaded files and photos are stored in certain directory in the server. There is a maintenance script to monitor and maintain the directory size for uploaded files.
+6. Showing Toast message for user operation such as successful login, unauthorized operation etc
+
+7. MongoDb is used to store dataset. Uploaded files and photos are stored in certain directory in the server. There is a maintenance script to monitor and maintain the directory size for uploaded files.
 
 ## Development server
 

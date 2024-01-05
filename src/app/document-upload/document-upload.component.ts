@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FilesUploadUrl, UploadService } from '../Services/upload.service';
+import { NotificationService, NotificationType } from '../Services/notification.service';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { FilesUploadUrl, UploadService } from '../Services/upload.service';
 export class DocumentUploadComponent implements OnDestroy {
   documents!: File[];
 
-  constructor(protected uploadService: UploadService){}
+  constructor(protected uploadService: UploadService, protected notificationService: NotificationService){}
   ngOnDestroy(): void {
     debugger;
   }
@@ -25,10 +26,11 @@ export class DocumentUploadComponent implements OnDestroy {
     e.preventDefault();
     this.uploadService.upload(this.documents, FilesUploadUrl).subscribe({
       next: result=>{
-        console.log('Files Uploaded successfully-', result);
+        this.notificationService.sendMessage({message: 'Files Uploaded successfully', type: NotificationType.success});
+        
       },
       error: error=>{
-        console.log('Files could not be uploaded', error);
+        this.notificationService.sendMessage({message: 'Files could not be uploaded: ' + error.error.msg, type: NotificationType.error});
       }
     })
   }
