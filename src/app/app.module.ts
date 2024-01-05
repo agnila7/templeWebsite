@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -35,6 +35,7 @@ import { EmailFormComponent } from './templeSitePages/email-form/email-form.comp
 import { RegisterComponent } from './templeSitePages/register/register.component';
 import { MatCardModule } from '@angular/material/card';
 import { LoginComponent } from './templeSitePages/login/login.component';
+import { NotificationMessageComponent } from './notification-message/notification-message.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { LoginComponent } from './templeSitePages/login/login.component';
     ContactComponent,
     EmailFormComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    NotificationMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,10 @@ import { LoginComponent } from './templeSitePages/login/login.component';
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    ToastrModule.forRoot({
+      positionClass :'toast-top-right'
+    })
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
      DayService, WeekService, WorkWeekService, MonthService, AgendaService, TimelineMonthService, MonthAgendaService, TimelineViewsService],

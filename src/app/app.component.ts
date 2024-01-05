@@ -89,12 +89,12 @@ export class AppComponent implements OnInit{
     // if token exist - assumed user is logged in
     if(this.authService.token){
       this.loggedIn = true;
-      this.showHideNonAdminMenu();
+      this.showOrHideNonAdminMenu();
     }
 
     this.authService.isLoggedIn$.subscribe(logIn=>{
       this.loggedIn = logIn;
-      this.showHideNonAdminMenu();
+      this.showOrHideNonAdminMenu();
     })
   }
 
@@ -110,7 +110,7 @@ export class AppComponent implements OnInit{
     this.authService.logOut();
   }
 
-  showHideNonAdminMenu(){
+  showOrHideNonAdminMenu(){
     if(this.authService.user?.role === UserRole.ADMIN || this.authService.user?.role === UserRole.SUPER_ADMIN){
       this.hideNonAdminMenu = false;
     }else{

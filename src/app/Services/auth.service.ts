@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { LoggedInUser, User, UserLoginInfo } from '../models/user.model';
 import { Router } from '@angular/router';
+import { NotificationService, NotificationType } from './notification.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class AuthService {
   private readonly TOKEN_NAME = 'token';
   public isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private userService: UserService, private encryptionService: EncryptionService, private router: Router) { 
+  constructor(private userService: UserService, private encryptionService: EncryptionService, private router: Router, private notificationService: NotificationService) { 
     this.isLoggedIn$.next( !!this.token);
   }
 
@@ -31,12 +32,12 @@ export class AuthService {
           if(result.token){
             localStorage.setItem(this.TOKEN_NAME, result.token);
             this.isLoggedIn$.next(true);
-            console.log('User registered successfully');
+            this.notificationService.sendMessage({message: 'User registered successfully', type: NotificationType.success});
             this.router.navigateByUrl('/');
           }
         },
       error: error=>{
-        console.log('User could not be registered: ', error);
+        this.notificationService.sendMessage({message: 'User could not be registered: ' + error.error.msg, type: NotificationType.error});
       }
     })
   }
@@ -48,12 +49,12 @@ export class AuthService {
         if(result.token){
           localStorage.setItem(this.TOKEN_NAME, result.token);
           this.isLoggedIn$.next(true);
-          console.log('User Logged In successfully');
+          this.notificationService.sendMessage({message: 'User Logged In successfully', type: NotificationType.success});
           this.router.navigateByUrl('/');
         }
       },
       error: error=>{
-        console.log('User could not be Logged In: ', error);
+        this.notificationService.sendMessage({message: 'User could not be Logged In: ' + error.error.msg, type: NotificationType.error});
       }
     })
   }
@@ -62,6 +63,7 @@ export class AuthService {
     localStorage.removeItem(this.TOKEN_NAME);
     this.isLoggedIn$.next(false);
     this.router.navigateByUrl('/login');
+    this.notificationService.sendMessage({message: 'Logged Out Successfully', type: NotificationType.success});
   }
 
   public get user(): LoggedInUser | null{
