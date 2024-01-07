@@ -36,6 +36,7 @@ import { RegisterComponent } from './templeSitePages/register/register.component
 import { MatCardModule } from '@angular/material/card';
 import { LoginComponent } from './templeSitePages/login/login.component';
 import { NotificationMessageComponent } from './notification-message/notification-message.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { NotificationMessageComponent } from './notification-message/notificatio
     })
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptorService, multi: true},
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
      DayService, WeekService, WorkWeekService, MonthService, AgendaService, TimelineMonthService, MonthAgendaService, TimelineViewsService],
   bootstrap: [AppComponent]
 })

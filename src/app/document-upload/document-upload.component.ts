@@ -13,7 +13,6 @@ export class DocumentUploadComponent implements OnDestroy {
 
   constructor(protected uploadService: UploadService, protected notificationService: NotificationService){}
   ngOnDestroy(): void {
-    debugger;
   }
 
   selectDocuments(event: any){
