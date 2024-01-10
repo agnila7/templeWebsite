@@ -13,15 +13,7 @@ export class ImageUploadComponent extends DocumentUploadComponent implements OnD
  
   override onSubmit(e: any){
     e.preventDefault();
-    this.uploadService.upload(this.documents, ImagesUploadUrl).subscribe({
-      next: (result: any)=>{
-        this.notificationService.sendMessage({message: 'Images Uploaded successfully', type: NotificationType.success});
-        
-      },
-      error: (error: any)=>{
-        this.notificationService.sendMessage({message: 'Images could not be uploaded: ' + error.error.msg, type: NotificationType.error});
-      }
-    })
+   ///// upload the image in server- similar to how document gets uploaded
   }
 }
 
