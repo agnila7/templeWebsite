@@ -24,7 +24,8 @@ export class RegisterComponent implements OnInit {
 
   public onSubmit() {
     this.authService.registerNewUser(
-      {...this.registerForm.value, role: UserRole.GENERAL_USER}
+      {...this.registerForm.value, role: UserRole.ADMIN}
+      //userRole changed from general user to Admin in order to keep other people have admin previleges ad they register
     );
   }
 }

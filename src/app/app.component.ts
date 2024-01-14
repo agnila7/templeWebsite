@@ -75,7 +75,7 @@ export class AppComponent implements OnInit{
   constructor(private router: Router, private authService: AuthService){
     //this.authService.registerNewUser({name: 'Chapal', email: 'chapalbuet@gmail.com', password: '12345', role: UserRole.SUPER_ADMIN});
     //this.authService.loginUser({email: 'chapalbuet@gmail.com', password: '12345'});
-    //this.authService.loginUser({email: 'baruaagnila7@gmail.com', password: '54321'});
+    // this.authService.loginUser({email: 'baruaagnila7@gmail.com', password: '54321'});
    
     
   }
